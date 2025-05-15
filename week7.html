@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Animation Example</title>
+    <style>
+        .animated-box {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        @keyframes moveBox {
+            0% {
+                transform: translateX(0);
+                background-color: blue;
+            }
+            50% {
+                transform: translateX(200px);
+                background-color: red;
+            }
+            100% {
+                transform: translateX(0);
+                background-color: blue;
+            }
+        }
+
+        .move-animation {
+            animation: moveBox 2s infinite;
+           
+        }
+    </style>
+</head>
+<body>
+
+    <div id="box" class="animated-box"></div>
+    <button onclick="startAnimation()">Start Animation</button>
+    <button onclick="stopAnimation()">Stop Animation</button>
+
+    <script>
+        // Check if the animation was triggered before
+        if(localStorage.getItem('animationTriggered') === 'true') {
+            document.getElementById('box').classList.add('move-animation');
+        }
+
+        // Start animation and store the state
+        function startAnimation() {
+            const box = document.getElementById('box');
+            box.classList.add('move-animation');
+            localStorage.setItem('animationTriggered', 'true');
+        }
+
+        // Stop animation and store the state
+        function stopAnimation() {
+            const box = document.getElementById('box');
+            box.classList.remove('move-animation');
+            localStorage.setItem('animationTriggered', 'false');
+        }
+    </script>
+
+</body>
+</html>
